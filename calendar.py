@@ -13,6 +13,7 @@ from font_fredoka_one import FredokaOne
 def request_data(url):
     """Request data from Board Game Geek."""
     data = request.get(url)
+    return data
 
 def get_hot_games():
     """Get top ten games on Board Game Geek hot games list."""
@@ -35,6 +36,7 @@ def dispaly_calendar_page(title, page_content):
     inky_display = InkyWHAT("red")
     inky_display.set_border(inky_display.BLACK)
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+    draw = ImageDraw.Draw(img)
 
     date_font = ImageFont.truetype(FredokaOne, 32)
     title_font = ImageFont.truetype(FredokaOne, 22)
@@ -45,24 +47,25 @@ def dispaly_calendar_page(title, page_content):
     today = datetime.today().strftime("%B %d, %Y")
 
     # Display Date Banner
-    for y in range(0,(5 + today_font.getsize(today)[1])):
+    for y in range(0,(5 + date_font.getsize(today)[1])):
         for x in range(0, inky_display.WIDTH):
             img.putpixel((x,y), inky_display.RED)
-    w,h = today_font.getsize(today)
+    w,h = date_font.getsize(today)
     x_today = (inky_display.WIDTH / 2 ) - (w / 2)
     y_today = 0
-    draw.text((x_today, y_today), today, inky_display.WHITE, today_font)
+    draw.text((x_today, y_today), today, inky_display.WHITE, date_font)
 
     # Display Page Title
     w,h = title_font.getsize(title)
     x_title = (inky_display.WIDTH / 2) - (w / 2)
     y_title = y_today + padding + h
-    draw.text(x_title, y_title), title, inky_display.BLACK title_font)
+    draw.text((x_title, y_title), title, inky_display.BLACK, title_font)
 
     #Display Page Content
     w,h = page_content_font.getsize(page_content)
     x_content = 5
     y_content = y_title + padding + h
+    draw.text((x_content, y_content), page_content, inky_display.BLACK, page_content_font)
 
     inky_display.set_image(img)
     inky_display.show()
