@@ -12,7 +12,7 @@ from font_fredoka_one import FredokaOne
 
 def request_data(url):
     """Request data from Board Game Geek."""
-    data = request.get(url)
+    data = requests.get(url)
     return data
 
 def get_hot_games():
