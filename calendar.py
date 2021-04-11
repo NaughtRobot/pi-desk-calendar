@@ -45,7 +45,7 @@ def dispaly_calendar_page(title, page_content):
     today = datetime.today().strftime("%B %d, %Y")
 
     # Display Date Banner
-    for y in range(0,(5 + today_font.getsize(today)[1]))):
+    for y in range(0,(5 + today_font.getsize(today)[1])):
         for x in range(0, inky_display.WIDTH):
             img.putpixel((x,y), inky_display.RED)
     w,h = today_font.getsize(today)
