@@ -1,0 +1,13 @@
+---
+bgg:
+  username: "NaughtRobot"
+game_conventions:
+  game_convention1:
+    name: "SaltCon End of Summer"
+    start_date: 2021-06-30
+  game_convention2:
+    name: "GenCon"
+    start_date: 2021-09-16
+  game_convention3:
+    name: "BGGCcon"
+    start_date: 2021-11-21
