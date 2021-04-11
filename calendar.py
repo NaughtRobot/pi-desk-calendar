@@ -1,5 +1,5 @@
 """Python Desktop Calendar."""
-from datatime import datetime
+from datetime import datetime
 from time import sleep
 
 import requests
