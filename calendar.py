@@ -30,7 +30,7 @@ def get_hot_games():
     return hot_games
     
 
-def dispaly_calendar_page(title, page_content)
+def dispaly_calendar_page(title, page_content):
     """Display calendar page."""
     inky_display = InkyWHAT("red")
     inky_display.set_border(inky_display.BLACK)
