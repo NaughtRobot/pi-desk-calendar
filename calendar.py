@@ -21,7 +21,7 @@ def get_hot_games():
     hot_games = ""
     count = 0
     for game in game_data['items']['item']:
-        if count count < 10:
+        if count < 10:
             hot_games += "{0:<3}{1}\n".format(game['@rank'],
                           game['name']['@value'])
             count += 1
