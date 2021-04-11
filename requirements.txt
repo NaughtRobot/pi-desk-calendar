@@ -1,0 +1,5 @@
+requests
+xmltodict
+inky
+PIL
+font_fredoka_one

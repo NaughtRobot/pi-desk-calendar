@@ -11,3 +11,6 @@ game_conventions:
   game_convention3:
     name: "BGGCcon"
     start_date: 2021-11-21
+claendar_pages:
+  page1:
+    title: "Top 10 Hot Games"
