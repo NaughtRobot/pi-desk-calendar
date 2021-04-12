@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Python Desktop Calendar."""
-import requests
-import xmltodict
 
 from datetime import datetime
 from time import sleep
+
+import requests
+import xmltodict
 
 from inky import InkyWHAT
 from PIL import Image, ImageFont, ImageDraw
