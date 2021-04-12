@@ -74,5 +74,5 @@ def dispaly_calendar_page(title, page_content):
 
 if __name__ == "__main__":
     dispaly_calendar_page("Top 10 Hot Games", get_hot_games())
-    sleep(30)
+    sleep(31)
     dispaly_calendar_page("Test Page", "This is a test!")
