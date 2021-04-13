@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Python Desktop Calendar."""
 
-from datetime import datetime
+import json
+
+from datetime import date, datetime
 from time import sleep
 
 import requests
@@ -11,11 +13,18 @@ from inky import InkyWHAT
 from PIL import Image, ImageFont, ImageDraw
 from font_fredoka_one import FredokaOne
 
+def read_config():
+    """Read Calendar Config File."""
+    config_file = "./config.json"
+    with open(config_file) as f:
+        data = json.load(f)
+    return data
 
 def request_data(url):
     """Request data from Board Game Geek."""
     data = requests.get(url)
     return data.content
+
 
 def get_hot_games():
     """Get top ten games on Board Game Geek hot games list."""
@@ -31,7 +40,23 @@ def get_hot_games():
         else:
             break
     return hot_games
-    
+
+def convention_countdown():
+    """Calculate the number of days until a given convention."""
+    data = read_config()
+    today = date.today()
+    convention_list = ""
+    for convention in data['game_conventions']:
+        start_date = datetime.strptime(convention['start_date'], "%Y-%M-%d").date
+        delta = today - start_date
+        if delta.days == 1:
+            convention_list = "{} day until {}.\n".format(delta.days, convention['name'])
+        elif delta.days == 0:
+            convention_list = "{} starts today\n".format(convention['name'])
+        else:
+            convention_list = "{} days until {}.\n".format(delta.days, convention['name'])
+    return convention_list
+
 
 def dispaly_calendar_page(title, page_content):
     """Display calendar page."""
@@ -46,7 +71,8 @@ def dispaly_calendar_page(title, page_content):
 
     padding = 20
 
-    today = datetime.today().strftime("%B %d, %Y")
+    today = date.today().strftime("%B %d, %Y")
+    today
 
     # Display Date Banner
     for y in range(0,(5 + date_font.getsize(today)[1])):
@@ -78,4 +104,4 @@ def dispaly_calendar_page(title, page_content):
 if __name__ == "__main__":
     dispaly_calendar_page("Top 10 Hot Games", get_hot_games())
     sleep(30)
-    dispaly_calendar_page("Test Page", "This is a test!")
+    dispaly_calendar_page("Boad Game Convention Countdown", convention_countdown())

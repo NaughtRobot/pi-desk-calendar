@@ -1,0 +1,27 @@
+{
+    "bgg": {
+       "username": "NaughtRobot"
+    },
+    "game_conventions": [
+       {
+          "name": "SaltCon End of Summer",
+          "start_date": "2021-06-30"
+       },
+       {
+          "name": "GenCon",
+          "start_date": "2021-09-16"
+       },
+       {
+          "name": "BGGCcon",
+          "start_date": "2021-11-21"
+       }
+    ],
+    "claendar_pages": [
+        {
+            "title": "Top 10 Hot Games"
+        },
+        {
+            "title": "Board Game Convention Countdown"
+        }
+    ]
+ }
