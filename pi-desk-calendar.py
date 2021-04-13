@@ -15,11 +15,11 @@ from font_fredoka_one import FredokaOne
 def request_data(url):
     """Request data from Board Game Geek."""
     data = requests.get(url)
-    return data
+    return data.content
 
 def get_hot_games():
     """Get top ten games on Board Game Geek hot games list."""
-    url = "https://www.boardgame.com/xmlapi2/hot?boardgames"
+    url = "https://www.boardgamegame.com/xmlapi2/hot?boardgame"
     game_data = xmltodict.parse(request_data(url))
     hot_games = ""
     count = 0
@@ -69,10 +69,13 @@ def dispaly_calendar_page(title, page_content):
     y_content = y_title + padding + h
     draw.text((x_content, y_content), page_content, inky_display.BLACK, page_content_font)
 
-    inky_display.set_image(img)
+    # For Testing
+    flipped = img.rotate(180)
+
+    inky_display.set_image(flipped)
     inky_display.show()
 
 if __name__ == "__main__":
     dispaly_calendar_page("Top 10 Hot Games", get_hot_games())
-    sleep(31)
+    sleep(30)
     dispaly_calendar_page("Test Page", "This is a test!")
