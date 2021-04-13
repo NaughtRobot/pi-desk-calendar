@@ -12,16 +12,19 @@
           "start_date": "2021-09-16"
        },
        {
-          "name": "BGGCcon",
+          "name": "BGGCon",
           "start_date": "2021-11-21"
        }
     ],
     "claendar_pages": [
         {
-            "title": "Top 10 Hot Games"
+           "title": "Top 10 Hot Games"
         },
         {
-            "title": "Board Game Convention Countdown"
+           "title": "Board Game Convention Countdown"
+        },
+        {
+           "title": "Personal Top Ten List"      
         }
     ]
  }
