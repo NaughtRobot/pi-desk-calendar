@@ -92,7 +92,7 @@ def get_collection():
             player_rating = game['stats']['rating']['@value']
             plays = game['numplays']
             rating = weighted_average(player_rating, mean_rating, plays)
-            COLLECTION.append({'name': title, 'player_rate': player_rating,
+            collection.append({'name': title, 'player_rate': player_rating,
                                 'rating': rating, 'plays': plays})
     except KeyError:
         if retry < 5:
@@ -102,7 +102,7 @@ def get_collection():
             collection = ("Could not fetch collection from BGG.")
             return collection
 
-    collection = multikeysort(COLLECTION, ['rating', 'name'])
+    collection = multi_key_sort(collection, ['rating', 'name'])
 
     return collection
 
@@ -183,6 +183,6 @@ def dispaly_calendar_page(title, page_content, font_size):
 if __name__ == "__main__":
     dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
     sleep(15)
-    dispaly_calendar_page("Boad Game Convention Countdown", convention_countdown(), 22)
+    dispaly_calendar_page("Boad Game Convention Countdown", convention_countdown(), 20)
     sleep(15)
     dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
