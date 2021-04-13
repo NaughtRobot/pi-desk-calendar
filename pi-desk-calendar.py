@@ -48,13 +48,13 @@ def convention_countdown():
     convention_list = ""
     for convention in data['game_conventions']:
         start_date = datetime.strptime(convention['start_date'], "%Y-%m-%d").date()
-        delta = today - start_date
+        delta = start_date - today
         if delta.days == 1:
-            convention_list = "{} day until {}.\n".format(delta.days, convention['name'])
+            convention_list += "{} day until {}.\n".format(delta.days, convention['name'])
         elif delta.days == 0:
-            convention_list = "{} starts today\n".format(convention['name'])
+            convention_list += "{} starts today\n".format(convention['name'])
         else:
-            convention_list = "{} days until {}.\n".format(delta.days, convention['name'])
+            convention_list += "{} days until {}.\n".format(delta.days, convention['name'])
     return convention_list
 
 
