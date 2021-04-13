@@ -58,7 +58,7 @@ def convention_countdown():
     return convention_list
 
 
-def dispaly_calendar_page(title, page_content):
+def dispaly_calendar_page(title, page_content, font_size):
     """Display calendar page."""
     inky_display = InkyWHAT("red")
     inky_display.set_border(inky_display.BLACK)
@@ -67,7 +67,7 @@ def dispaly_calendar_page(title, page_content):
 
     date_font = ImageFont.truetype(FredokaOne, 32)
     title_font = ImageFont.truetype(FredokaOne, 22)
-    page_content_font = ImageFont.truetype(FredokaOne, 15)
+    page_content_font = ImageFont.truetype(FredokaOne, font_size)
 
     padding = 20
 
@@ -102,6 +102,6 @@ def dispaly_calendar_page(title, page_content):
     inky_display.show()
 
 if __name__ == "__main__":
-    dispaly_calendar_page("Top 10 Hot Games", get_hot_games())
+    dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 16)
     sleep(30)
-    dispaly_calendar_page("Boad Game Convention Countdown", convention_countdown())
+    dispaly_calendar_page("Boad Game Convention Countdown", convention_countdown(), 18)
