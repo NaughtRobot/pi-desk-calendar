@@ -6,6 +6,8 @@ import sys
 
 from datetime import date, datetime
 from time import sleep
+from operator import itemgetter
+from functools import cmp_to_key
 
 import requests
 import xmltodict
@@ -183,6 +185,6 @@ def dispaly_calendar_page(title, page_content, font_size):
 if __name__ == "__main__":
     dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
     sleep(15)
-    dispaly_calendar_page("Boad Game Convention Countdown", convention_countdown(), 20)
+    dispaly_calendar_page("Convention Countdown", convention_countdown(), 20)
     sleep(15)
     dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
