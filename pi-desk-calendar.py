@@ -28,7 +28,7 @@ def request_data(url):
 
 def get_hot_games():
     """Get top ten games on Board Game Geek hot games list."""
-    url = "https://www.boardgamegame.com/xmlapi2/hot?boardgame"
+    url = "https://www.boardgamegamegeek.com/xmlapi2/hot?boardgame"
     game_data = xmltodict.parse(request_data(url))
     hot_games = ""
     count = 0
