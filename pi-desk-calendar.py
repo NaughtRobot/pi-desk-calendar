@@ -114,7 +114,7 @@ def get_personal_top_ten():
     rank = 1
     collection = get_collection()
     for game in collection:
-        top_games += "{0}{1}".format(str(rank).ljust(3), str(
+        top_games += "{0}{1}\n".format(str(rank).ljust(3), str(
             game['name']).strip('b').strip('\'').strip('\"'))
         if rank <= 9:
             rank += 1
@@ -131,12 +131,14 @@ def convention_countdown():
     for convention in data['game_conventions']:
         start_date = datetime.strptime(convention['start_date'], "%Y-%m-%d").date()
         delta = start_date - today
-        if delta.days == 1:
-            convention_list += "{} day until {}.\n".format(delta.days, convention['name'])
-        elif delta.days == 0:
-            convention_list += "{} starts today\n".format(convention['name'])
+        if delta.days < 0:
+            continue
+        elif delta.days = 1:
+            convention_list += "{0}: {1} day\n".format(convention['name'], delta.days)
+        elif delta.days = 0:
+            convention_list += "{0}: Starts Today!\n".format(convention['name'], delta.days)
         else:
-            convention_list += "{} days until {}.\n".format(delta.days, convention['name'])
+            convention_list += "{0}: {1} days\n".format(convention['name'], delta.days)
     return convention_list
 
 
