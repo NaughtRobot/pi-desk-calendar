@@ -133,9 +133,9 @@ def convention_countdown():
         delta = start_date - today
         if delta.days < 0:
             continue
-        elif delta.days = 1:
+        elif delta.days == 1:
             convention_list += "{0}: {1} day\n".format(convention['name'], delta.days)
-        elif delta.days = 0:
+        elif delta.days == 0:
             convention_list += "{0}: Starts Today!\n".format(convention['name'], delta.days)
         else:
             convention_list += "{0}: {1} days\n".format(convention['name'], delta.days)
