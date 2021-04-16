@@ -163,7 +163,7 @@ def get_last_played_game():
     for play in doc['plays']['play']:
         days_between = abs(calc_date_delta(datetime.strptime(play['@date'], "%Y-%m-%d").date()))
         last_played += "{}\n".format(play['item']['@name'])
-        last_played += "{}: {} since last played.\n".format(play['@date'], days_between)
+        last_played += "{}: {} since last played.\n\n".format(play['@date'], days_between)
         if count < 2:
             count += 1
         else:
