@@ -143,11 +143,11 @@ def convention_countdown():
         if days_between < 0:
             continue
         elif days_between == 1:
-            convention_list += "{0}: {1} day\n".format(convention['name'], delta.days)
+            convention_list += "{0}: {1} day\n".format(convention['name'], days_between)
         elif days_between == 0:
-            convention_list += "{0}: Starts Today!\n".format(convention['name'], delta.days)
+            convention_list += "{0}: Starts Today!\n".format(convention['name'], days_between)
         else:
-            convention_list += "{0}: {1} days\n".format(convention['name'], delta.days)
+            convention_list += "{0}: {1} days\n".format(convention['name'], days_between)
     return convention_list
 
 
