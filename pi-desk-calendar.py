@@ -156,13 +156,12 @@ def get_last_played_game():
     data = request_data(url)
     doc = xmltodict.parse(data)
     count = 0
-    try:
-        for play in doc['plays']['play']:
-            print("{}\t{}".format(play['@date']), play['item']['name'])
-            if count < 2:
-                count += 1
-            else:
-                break
+    for play in doc['plays']['play']:
+        print("{}\t{}".format(play['@date']), play['item']['name'])
+        if count < 2:
+            count += 1
+        else:
+            break
             
 
 def dispaly_calendar_page(title, page_content, font_size):
