@@ -160,7 +160,7 @@ def get_last_played_game():
     doc = xmltodict.parse(data)
     count = 0
     for play in doc['plays']['play']:
-        days_between = calc_date_delta(play['@date'])
+        days_between = calc_date_delta(datetime.strptime(play['@date'], "%Y-%m-%d").date())
         print("{}: {}\n".format(play['@date'], play['item']['@name']))
         print("{} since last played.".format(days_between))
         if count < 2:
