@@ -159,14 +159,16 @@ def get_last_played_game():
     data = request_data(url)
     doc = xmltodict.parse(data)
     count = 0
+    last_played = ""
     for play in doc['plays']['play']:
         days_between = abs(calc_date_delta(datetime.strptime(play['@date'], "%Y-%m-%d").date()))
-        print("{}: {}".format(play['@date'], play['item']['@name']))
-        print("{} since last played.\n".format(days_between))
+        last_played =+ "{}".format(play['item']['@name'])
+        last_played =+ "{}: {} since last played.\n".format(play['@date'], days_between)
         if count < 2:
             count += 1
         else:
             break
+    return last_played
             
 
 def dispaly_calendar_page(title, page_content, font_size):
@@ -212,9 +214,10 @@ def dispaly_calendar_page(title, page_content, font_size):
     inky_display.show()
 
 if __name__ == "__main__":
-    get_last_played_game()
-    # dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
-    # sleep(15)
-    # dispaly_calendar_page("Convention Countdown", convention_countdown(), 20)
-    # sleep(15)
-    # dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
+    dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
+    sleep(15)
+    dispaly_calendar_page("Convention Countdown", convention_countdown(), 20)
+    sleep(15)
+    dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
+    sleep(15)
+    dispaly_calendar_page("Last 3 Games Played", get_last_played_game(), 20)
