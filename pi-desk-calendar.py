@@ -25,6 +25,7 @@ def read_config():
         data = json.load(f)
     return data
 
+
 def request_data(url):
     """Request data from Board Game Geek."""
     data = requests.get(url)
@@ -46,6 +47,7 @@ def get_hot_games():
             break
     return hot_games
 
+
 def weighted_average(rating, mean, plays):
     """Calculate weighted average for game."""
     rating, mean, plays = float(rating), float(mean), float(plays)
@@ -53,6 +55,7 @@ def weighted_average(rating, mean, plays):
     rating = (plays / (plays + minimum_plays)) * rating \
         + (minimum_plays / (plays + minimum_plays)) * mean
     return rating
+
 
 def multi_key_sort(items, columns):
     """Sort dictionary based on multiple keys."""
@@ -68,6 +71,7 @@ def multi_key_sort(items, columns):
 
     return sorted(items, key=cmp_to_key(comparer))
 
+
 def calculate_mean(collection):
     """Calculate the mean ration for collection."""
     ratings = []
@@ -75,6 +79,7 @@ def calculate_mean(collection):
         ratings.append(float(game['stats']['rating']['@value']))
     mean = sum(ratings)/len(ratings)
     return mean
+
 
 def get_collection():
     """Get user's collection from BGG."""
@@ -107,6 +112,7 @@ def get_collection():
     collection = multi_key_sort(collection, ['rating', 'name'])
 
     return collection
+
 
 def get_personal_top_ten():
     """Get personal top ten games using weighted average."""
@@ -141,6 +147,23 @@ def convention_countdown():
             convention_list += "{0}: {1} days\n".format(convention['name'], delta.days)
     return convention_list
 
+
+def get_last_played_game():
+    config = read_config()
+    username = config['bgg']['username']
+    baseurl = 'https://www.boardgamegeek.com/xmlapi2/'
+    url = baseurl + "plays?username={}".format(username)
+    data = request_data(url)
+    doc = xmltodict.parse(data)
+    count = 0
+    try:
+        for play in doc['plays']['play']:
+            print("{}\t{}".format(play['@date']), play['item']['name'])
+            if count < 2:
+                count += 1
+            else:
+                break
+            
 
 def dispaly_calendar_page(title, page_content, font_size):
     """Display calendar page."""
@@ -185,8 +208,9 @@ def dispaly_calendar_page(title, page_content, font_size):
     inky_display.show()
 
 if __name__ == "__main__":
-    dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
-    sleep(15)
-    dispaly_calendar_page("Convention Countdown", convention_countdown(), 20)
-    sleep(15)
-    dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
+    get_last_played_game()
+    # dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
+    # sleep(15)
+    # dispaly_calendar_page("Convention Countdown", convention_countdown(), 20)
+    # sleep(15)
+    # dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
