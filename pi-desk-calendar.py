@@ -128,11 +128,13 @@ def get_personal_top_ten():
             break
     return top_games
 
+
 def calc_date_delta(different_date):
     """Calculate delta between two dates."""
     today = date.today()
     delta = different_date - today
     return delta.days
+
 
 def convention_countdown():
     """Calculate the number of days until a given convention."""
@@ -143,11 +145,11 @@ def convention_countdown():
         if days_between < 0:
             continue
         elif days_between == 1:
-            convention_list += "{0}: {1} day\n".format(convention['name'], days_between)
+            convention_list += "{} day until {}\n\n".format(days_between, convention['name'])
         elif days_between == 0:
-            convention_list += "{0}: Starts Today!\n".format(convention['name'], days_between)
+            convention_list += "{} starts today!\n\n".format(convention['name'])
         else:
-            convention_list += "{0}: {1} days\n".format(convention['name'], days_between)
+            convention_list += "{} days until {}\n\n".format(days_between, convention['name'])
     return convention_list
 
 
@@ -179,7 +181,7 @@ def dispaly_calendar_page(title, page_content, font_size):
     draw = ImageDraw.Draw(img)
 
     date_font = ImageFont.truetype(FredokaOne, 32)
-    title_font = ImageFont.truetype(FredokaOne, 22)
+    title_font = ImageFont.truetype(FredokaOne, 23)
     page_content_font = ImageFont.truetype(FredokaOne, font_size)
 
     padding = 20
@@ -220,4 +222,4 @@ if __name__ == "__main__":
     sleep(15)
     dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
     sleep(15)
-    dispaly_calendar_page("Last 3 Games Played", get_last_played_game(), 20)
+    dispaly_calendar_page("Last 3 Games Played", get_last_played_game(), 21)
