@@ -157,7 +157,7 @@ def get_last_played_game():
     doc = xmltodict.parse(data)
     count = 0
     for play in doc['plays']['play']:
-        print("{}\t{}".format(play['@date']), play['item']['name'])
+        print("{}\t{}".format(play['@date']), play['item']['@name'])
         if count < 2:
             count += 1
         else:
