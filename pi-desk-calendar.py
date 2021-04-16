@@ -217,9 +217,9 @@ def dispaly_calendar_page(title, page_content, font_size):
 
 if __name__ == "__main__":
     dispaly_calendar_page("Top 10 Hot Games", get_hot_games(), 15)
-    sleep(15)
+    sleep(5340)
     dispaly_calendar_page("Convention Countdown", convention_countdown(), 20)
-    sleep(15)
+    sleep(5340)
     dispaly_calendar_page("Personal Top 10 Games", get_personal_top_ten(), 15)
-    sleep(15)
-    dispaly_calendar_page("Last 3 Games Played", get_last_played_game(), 21)
+    sleep(5340)
+    dispaly_calendar_page("Last 3 Games Played", get_last_played_game(), 19)
