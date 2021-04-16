@@ -128,20 +128,23 @@ def get_personal_top_ten():
             break
     return top_games
 
+def calc_date_delta(different_date):
+    """Calculate delta between two dates."""
+    today = date.today()
+    delta = different_date - today
+    return delta.days
 
 def convention_countdown():
     """Calculate the number of days until a given convention."""
     data = read_config()
-    today = date.today()
     convention_list = ""
     for convention in data['game_conventions']:
-        start_date = datetime.strptime(convention['start_date'], "%Y-%m-%d").date()
-        delta = start_date - today
-        if delta.days < 0:
+        days_between = calc_date_delta(datetime.strptime(convention['start_date'], "%Y-%m-%d").date())
+        if days_between < 0:
             continue
-        elif delta.days == 1:
+        elif days_between == 1:
             convention_list += "{0}: {1} day\n".format(convention['name'], delta.days)
-        elif delta.days == 0:
+        elif days_between == 0:
             convention_list += "{0}: Starts Today!\n".format(convention['name'], delta.days)
         else:
             convention_list += "{0}: {1} days\n".format(convention['name'], delta.days)
@@ -157,7 +160,9 @@ def get_last_played_game():
     doc = xmltodict.parse(data)
     count = 0
     for play in doc['plays']['play']:
-        print("{}\t{}".format(play['@date']), play['item']['@name'])
+        days_between = calc_date_delta(play['@date'])
+        print("{}: {}\n".format(play['@date'], play['item']['@name']))
+        print("{} since last played.".format(days_between))
         if count < 2:
             count += 1
         else:
