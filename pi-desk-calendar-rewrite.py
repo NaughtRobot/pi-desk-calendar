@@ -8,6 +8,7 @@ from datetime import date, datetime
 from time import sleep
 from operator import itemgetter
 from functools import cmp_to_key
+from itertools import islice
 
 import requests
 import xmltodict
