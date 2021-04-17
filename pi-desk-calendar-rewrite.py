@@ -49,7 +49,7 @@ def display_calendar_page(font_size, page_title, page_content):
     title_font = ImageFont.truetype(FredokaOne, 20)
     page_content_font = ImageFont.truetype(FredokaOne, font_size)
     
-    padding = 20
+    padding = 15
 
     # Display Date Banner
     for y in range(0,(5 + date_font.getsize(today)[1])):
@@ -69,7 +69,7 @@ def display_calendar_page(font_size, page_title, page_content):
     #Display Page Content
     w,h = page_content_font.getsize(page_content)
     x_content = 5
-    y_content = y_title + padding + h
+    y_content = y_title + 5 + h
     draw.text((x_content, y_content), page_content, inky_display.BLACK, page_content_font)
 
     # For Testing
