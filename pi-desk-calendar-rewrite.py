@@ -69,7 +69,7 @@ def display_calendar_page(font_size, page_title, page_content):
     #Display Page Content
     w,h = page_content_font.getsize(page_content)
     x_content = 5
-    y_content = y_title + 5 + h
+    y_content = y_title + 10 + h
     draw.text((x_content, y_content), page_content, inky_display.BLACK, page_content_font)
 
     # For Testing
