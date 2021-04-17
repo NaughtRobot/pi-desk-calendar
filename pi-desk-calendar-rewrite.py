@@ -41,7 +41,7 @@ def display_calendar_page(font_size, page_title, page_content):
 
     date_font = ImageFont.truetype(r'fonts/Monoid-Bold.ttf', 30)
     title_font = ImageFont.truetype(r'fonts/Monoid-Bold.ttf', 20)
-    page_content_font = ImageFont.truetyper(r'fonts/Monoid-Bold.ttf', font_size)
+    page_content_font = ImageFont.truetype(r'fonts/Monoid-Bold.ttf', font_size)
     
     padding = 20
 
