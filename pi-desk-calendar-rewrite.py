@@ -62,7 +62,7 @@ def display_hot_games():
         w,h = title_font.getsize(page_title)
         x_title = (inky_display.WIDTH / 2) - (w / 2)
         y_title = y_today + padding + h
-        draw.text((x_title, y_title), title, inky_display.BLACK, title_font)
+        draw.text((x_title, y_title), page_title, inky_display.BLACK, title_font)
 
         #Display Page Content
         w,h = page_content_font.getsize(page_content)
