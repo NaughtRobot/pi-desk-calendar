@@ -33,7 +33,7 @@ def request_data(url):
 
 def take(n, iterable):
     """Return first n items of of the iterable as a list"""
-    return list(isslice(iterable, n))
+    return list(islice(iterable, n))
 
 def display_hot_games():
     """Display top ten games on Board Game Geek hot games list."""
