@@ -15,6 +15,7 @@ import xmltodict
 
 from inky import InkyWHAT
 from PIL import Image, ImageFont, ImageDraw
+from font_fredoka_one import FredokaOne
 
 sys.getdefaultencoding()
 
@@ -39,9 +40,9 @@ def display_calendar_page(font_size, page_title, page_content):
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
     draw = ImageDraw.Draw(img)
 
-    date_font = ImageFont.truetype(r'fonts/Monoid-Bold.ttf', 30)
-    title_font = ImageFont.truetype(r'fonts/Monoid-Bold.ttf', 20)
-    page_content_font = ImageFont.truetype(r'fonts/Monoid-Bold.ttf', font_size)
+    date_font = ImageFont.truetype(FredokaOne, 30)
+    title_font = ImageFont.truetype(FredokaOne, 20)
+    page_content_font = ImageFont.truetype(FredokaOne, font_size)
     
     padding = 20
 
@@ -107,11 +108,11 @@ def display_convention_countdown():
         if days_between < 0:
             continue
         elif days_between == 1:
-            convention_list += "{} day until {}\n".format(convention['name'], days_between)
+            convention_list += "{} starts in {} day.\n".format(convention['name'], days_between)
         elif days_between == 0:
             convention_list += "{} starts today!\n".format(convention['name'], days_between)
         else:
-            convention_list += "{} days until {}\n".format(convention['name'], days_between)
+            convention_list += "{} starts in {} days.\n".format(convention['name'], days_between)
     
     display_calendar_page(15, "Upcoming Gaming Conventions", convention_list)
 
