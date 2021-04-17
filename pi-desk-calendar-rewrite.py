@@ -82,8 +82,8 @@ def display_hot_games():
     count = 0
     for game in hot_games_data['items']['item']:
         if count < 10:
-            hot_games += "{0:<3}{1}\n".format(game['@rank'],
-                          game['name']['@value'])
+            hot_games_list += "{0:<3}{1}\n".format(game['@rank'],
+                              game['name']['@value'])
             count += 1
         else:
             break
