@@ -31,6 +31,11 @@ def request_data(url):
     data = requests.get(url)
     return xmltodict.parse(data.content)
 
+def calc_date_delta(convention_start_date):
+    """Calculate delta between two dates."""
+    today = date.today()
+    delta = convention_start_date - today
+    return delta.days
 
 def display_calendar_page(font_size, page_title, page_content):
     """Display calendar page."""
@@ -73,10 +78,8 @@ def display_calendar_page(font_size, page_title, page_content):
     inky_display.set_image(flipped)
     inky_display.show()
 
-
 def display_hot_games():
     """Display top ten games on Board Game Geek hot games list."""
-
     hot_games_api = "https://www.boardgamegeek.com/xmlapi2/hot?boardgames"
     hot_games_data = request_data(hot_games_api)
     hot_games_list = ""
@@ -91,16 +94,15 @@ def display_hot_games():
 
     display_calendar_page(15, "Top 10 Hot Games", hot_games_list)
 
-
 def display_convention_countdown():
-    """Calculate the number of days until a given convention."""
-    
+    """Calculate the number of days until a given convention."""   
+
     def calc_date_delta(convention_start_date):
         """Calculate delta between two dates."""
         today = date.today()
         delta = convention_start_date - today
-        return delta.days
-    
+        return delta.days  
+
     convention_data = read_config()
     convention_list = ""
     for convention in convention_data['game_conventions']:
@@ -116,6 +118,24 @@ def display_convention_countdown():
     
     display_calendar_page(15, "Upcoming Gaming Conventions", convention_list)
 
+def get_last_played_game():
+    config = read_config()
+    username = config['bgg']['username']
+    baseurl = 'https://www.boardgamegeek.com/xmlapi2/'
+    url = baseurl + "plays?username={}".format(username)
+    last_played_data = request_data(url)
+    count = 0
+    last_games_played = ""
+    for play in last_played_data['plays']['play']:
+        last_games_played += "{}: {}\n".format(play['@date'], play['item']['@name'])
+        if count < 10:
+            count += 1
+        else:
+            break
+    display_calendar_page(15, "Last 10 Games Played", last_games_played)
+
+
 if __name__ == "__main__":
     display_hot_games()
     display_convention_countdown()
+    get_last_played_game()
