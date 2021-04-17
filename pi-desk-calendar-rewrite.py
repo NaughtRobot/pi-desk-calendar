@@ -31,10 +31,6 @@ def request_data(url):
     data = requests.get(url)
     return xmltodict.parse(data.content)
 
-def take(n, iterable):
-    """Return first n items of of the iterable as a list"""
-    return list(islice(iterable, n))
-
 def display_hot_games():
     """Display top ten games on Board Game Geek hot games list."""
 
@@ -83,9 +79,14 @@ def display_hot_games():
     hot_games_api = "https://www.boardgamegeek.com/xmlapi2/hot?boardgames"
     hot_games_data = request_data(hot_games_api)
     hot_games_list = ""
-    
-    for game in take(3,hot_games_data.items()):
-       hot_games_list += "{0:<3}{1}\n".format(game['@rank'], game['name']['@value'])
+    count = 0
+    for game in hot_games_data['items']['item']:
+        if count < 10:
+            hot_games += "{0:<3}{1}\n".format(game['@rank'],
+                          game['name']['@value'])
+            count += 1
+        else:
+            break
 
     display_calendar_page(hot_games_list)
 
